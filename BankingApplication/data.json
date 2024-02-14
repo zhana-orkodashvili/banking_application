@@ -1,0 +1,40 @@
+[
+  {
+    "FirstName": "John",
+    "LastName": "Doe",
+    "CardDetails": {
+      "CardNumber": "1234-5678-9812-3456",
+      "ExpirationDate": "12/25",
+      "CVC": "123",
+      "PinCode": "1234"
+    },
+    "TransactionHistory": [
+      {
+        "TransactionDate": "2024-01-03T14:15:30+04:00",
+        "TransactionType": "BalanceInquiry",
+        "AmountGEL": 0.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      }
+    ]
+  },
+  {
+    "FirstName": "Jane",
+    "LastName": "Smith",
+    "CardDetails": {
+      "CardNumber": "9876-5432-1234-5678",
+      "ExpirationDate": "11/23",
+      "CVC": "456",
+      "PinCode": "5678"
+    },
+    "TransactionHistory": [
+      {
+        "TransactionDate": "2024-01-03T14:15:30+04:00",
+        "TransactionType": "BalanceInquiry",
+        "AmountGEL": 0.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      }
+    ]
+  }
+]
