@@ -10,42 +10,42 @@
     },
     "TransactionHistory": [
       {
-        "TransactionDate": "2024-02-16T20:53:22.8876913+04:00",
-        "TransactionType": "Check Balance",
-        "AmountGel": 400.0,
-        "AmountUsd": 37.700,
-        "AmountEur": 0.0
+        "TransactionDate": "2024-02-16T21:19:38.9905595+04:00",
+        "TransactionType": "Fill Amount",
+        "AmountGel": 350.0,
+        "AmountUsd": 0.0,
+        "AmountEur": 35.00
       },
       {
-        "TransactionDate": "2024-02-16T20:53:01.9099341+04:00",
+        "TransactionDate": "2024-02-16T21:19:13.8250878+04:00",
         "TransactionType": "Change PIN",
-        "AmountGel": 400.0,
-        "AmountUsd": 37.700,
-        "AmountEur": 0.0
+        "AmountGel": 300.0,
+        "AmountUsd": 0.0,
+        "AmountEur": 35.00
       },
       {
-        "TransactionDate": "2024-02-16T20:52:24.5969354+04:00",
-        "TransactionType": "Withdrawal",
-        "AmountGel": 400.0,
-        "AmountUsd": 37.700,
-        "AmountEur": 0.0
-      },
-      {
-        "TransactionDate": "2024-02-16T20:52:15.6444119+04:00",
+        "TransactionDate": "2024-02-16T21:18:34.1416635+04:00",
         "TransactionType": "Check Balance",
-        "AmountGel": 500.0,
-        "AmountUsd": 37.700,
-        "AmountEur": 0.0
+        "AmountGel": 300.0,
+        "AmountUsd": 0.0,
+        "AmountEur": 35.00
       },
       {
-        "TransactionDate": "2024-02-16T20:52:12.5304702+04:00",
-        "TransactionType": "Currency Conversion to USD",
-        "AmountGel": 500.0,
-        "AmountUsd": 37.700,
-        "AmountEur": 0.0
+        "TransactionDate": "2024-02-16T21:18:26.123036+04:00",
+        "TransactionType": "Withdrawal",
+        "AmountGel": 300.0,
+        "AmountUsd": 0.0,
+        "AmountEur": 35.00
       },
       {
-        "TransactionDate": "2024-02-16T20:51:58.7484268+04:00",
+        "TransactionDate": "2024-02-16T21:18:00.0756078+04:00",
+        "TransactionType": "Currency Conversion to EUR",
+        "AmountGel": 500.0,
+        "AmountUsd": 0.0,
+        "AmountEur": 35.00
+      },
+      {
+        "TransactionDate": "2024-02-16T21:17:37.7130688+04:00",
         "TransactionType": "Fill Amount",
         "AmountGel": 600.0,
         "AmountUsd": 0.0,
