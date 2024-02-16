@@ -51,7 +51,7 @@ internal abstract class BankingApplication
 
                 var attempts = 0;
                 var isAuthenticated = false;
-                
+
                 while (attempts < 3)
                 {
                     Console.Write("Enter PIN: ");
@@ -75,26 +75,28 @@ internal abstract class BankingApplication
                     continue;
                 }
                 
-                while (true)
+                Console.WriteLine($"\nHello {currentUser.FirstName} {currentUser.LastName}!");
+                
+                while (isAuthenticated)
                 {
-                    Console.WriteLine($"\nHello {currentUser.FirstName} {currentUser.LastName}!");
-                    Console.WriteLine("Select an operation:");
-                    Console.WriteLine("1. Balance Enquiry");
-                    Console.WriteLine("2. Withdrawal");
+                    Console.WriteLine("\nSelect an operation:");
+                    Console.WriteLine("1. Check Balance");
+                    Console.WriteLine("2. Withdraw Money");
                     Console.WriteLine("3. Get 5 Latest Transactions");
-                    Console.WriteLine("4. Deposit");
+                    Console.WriteLine("4. Make a Deposit");
                     Console.WriteLine("5. Change PIN");
                     Console.WriteLine("6. Currency Conversion");
                     Console.WriteLine("7. Exit");
 
-                    var choice = Console.ReadLine(); 
+                    var choice = Console.ReadLine();
                     
-                    var balance = currentUser.TransactionHistory[0].AmountGEL;
+                    var balance = currentUser.TransactionHistory.Count == 0 ? 0 : currentUser.TransactionHistory[0].AmountGel;
                     
                     switch (choice)
                     {
                         case "1":
                             currentUser.CheckBalance();
+                            SaveUserData(userData, filePath);
                             break;
                         
                         case "2":
@@ -103,7 +105,7 @@ internal abstract class BankingApplication
                             {
                                 Logger.Info("Money Withdrawal Failed | Invalid Amount");
                                 Console.WriteLine("Invalid amount. Please enter a valid number.");
-                                continue;
+                                break;
                             }
                             currentUser.MakeWithdrawal(amountToWithdraw);
                             SaveUserData(userData, filePath);
@@ -120,7 +122,7 @@ internal abstract class BankingApplication
                             {
                                 Logger.Info("Money Deposit Failed | Invalid Amount");
                                 Console.WriteLine("Invalid amount. Please enter a valid number.");
-                                continue;
+                                break;
                             }
                             currentUser.MakeDeposit(amountToDeposit);
                             SaveUserData(userData, filePath);
@@ -134,10 +136,11 @@ internal abstract class BankingApplication
                             {
                                 Logger.Info("PIN Change Failed | Invalid PIN");
                                 Console.WriteLine("Invalid PIN. PIN must be exactly 4 characters long.");
-                                continue;
+                                break;
                             }
                             currentUser.ChangePin(newPin);
                             SaveUserData(userData, filePath);
+                            isAuthenticated = false;
                             break;
                         
                         case "6":
@@ -171,7 +174,7 @@ internal abstract class BankingApplication
                             break;
                     }
 
-                    if (choice == "7")
+                    if (choice == "7" )
                         break;
                 }
             }
@@ -192,59 +195,47 @@ internal abstract class BankingApplication
 
     private static User AuthenticateUser(List<User> users, string cardNumber, string expirationDate, string cvc)
     {
-        return users.FirstOrDefault(user => user.CardDetails.CardNumber == cardNumber && user.CardDetails.ExpirationDate == expirationDate && user.CardDetails.CVC == cvc);
+        return users.FirstOrDefault(user => user.CardDetails.CardNumber == cardNumber && user.CardDetails.ExpirationDate == expirationDate && user.CardDetails.Cvc == cvc);
     }
 
     private static void InitializeData(string filePath)
         {
             var users = new List<User>
             {
-                new()
-                {
-                    FirstName = "John",
-                    LastName = "Doe",
-                    CardDetails = new Card
+                new(firstName: "John", lastName: "Doe", cardDetails: new Card
                     {
                         CardNumber = "1234-5678-9812-3456",
                         ExpirationDate = "12/25",
-                        CVC = "123",
+                        Cvc = "123",
                         PinCode = "1234"
-                    },
-                    TransactionHistory = new List<Transaction>
-                    {
-                        new()
+                    }, transactionHistory:
+                    [
+                        new Transaction
                         {
                             TransactionDate = DateTime.Parse("2024-01-03T10:15:30Z"),
                             TransactionType = "BalanceInquiry",
-                            AmountGEL = 0,
-                            AmountUSD = 0,
-                            AmountEUR = 0
+                            AmountGel = 0,
+                            AmountUsd = 0,
+                            AmountEur = 0
                         }
-                    }
-                },
-                new()
-                {
-                    FirstName = "Jane",
-                    LastName = "Smith",
-                    CardDetails = new Card
+                    ]),
+                new(firstName: "Jane", lastName: "Smith", cardDetails: new Card
                     {
                         CardNumber = "9876-5432-1234-5678",
                         ExpirationDate = "11/23",
-                        CVC = "456",
+                        Cvc = "456",
                         PinCode = "5678"
-                    },
-                    TransactionHistory = new List<Transaction>
-                    {
-                        new()
+                    }, transactionHistory:
+                    [
+                        new Transaction
                         {
                             TransactionDate = DateTime.Parse("2024-01-03T10:15:30Z"),
                             TransactionType = "BalanceInquiry",
-                            AmountGEL = 0,
-                            AmountUSD = 0,
-                            AmountEUR = 0
+                            AmountGel = 0,
+                            AmountUsd = 0,
+                            AmountEur = 0
                         }
-                    }
-                }
+                    ])
             };
             
             var json = JsonConvert.SerializeObject(users.ToArray(), Formatting.Indented);
@@ -253,10 +244,7 @@ internal abstract class BankingApplication
                 File.Create(filePath).Close();
             
             File.WriteAllText(filePath, json);
-            
         }
-
-
 }
 
 

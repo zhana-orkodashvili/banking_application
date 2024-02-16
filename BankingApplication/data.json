@@ -5,16 +5,58 @@
     "CardDetails": {
       "CardNumber": "1234-5678-9812-3456",
       "ExpirationDate": "12/25",
-      "CVC": "123",
-      "PinCode": "1234"
+      "Cvc": "123",
+      "PinCode": "4321"
     },
     "TransactionHistory": [
       {
+        "TransactionDate": "2024-02-16T20:53:22.8876913+04:00",
+        "TransactionType": "Check Balance",
+        "AmountGel": 400.0,
+        "AmountUsd": 37.700,
+        "AmountEur": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T20:53:01.9099341+04:00",
+        "TransactionType": "Change PIN",
+        "AmountGel": 400.0,
+        "AmountUsd": 37.700,
+        "AmountEur": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T20:52:24.5969354+04:00",
+        "TransactionType": "Withdrawal",
+        "AmountGel": 400.0,
+        "AmountUsd": 37.700,
+        "AmountEur": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T20:52:15.6444119+04:00",
+        "TransactionType": "Check Balance",
+        "AmountGel": 500.0,
+        "AmountUsd": 37.700,
+        "AmountEur": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T20:52:12.5304702+04:00",
+        "TransactionType": "Currency Conversion to USD",
+        "AmountGel": 500.0,
+        "AmountUsd": 37.700,
+        "AmountEur": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T20:51:58.7484268+04:00",
+        "TransactionType": "Fill Amount",
+        "AmountGel": 600.0,
+        "AmountUsd": 0.0,
+        "AmountEur": 0.0
+      },
+      {
         "TransactionDate": "2024-01-03T14:15:30+04:00",
         "TransactionType": "BalanceInquiry",
-        "AmountGEL": 0.0,
-        "AmountUSD": 0.0,
-        "AmountEUR": 0.0
+        "AmountGel": 0.0,
+        "AmountUsd": 0.0,
+        "AmountEur": 0.0
       }
     ]
   },
@@ -24,16 +66,16 @@
     "CardDetails": {
       "CardNumber": "9876-5432-1234-5678",
       "ExpirationDate": "11/23",
-      "CVC": "456",
+      "Cvc": "456",
       "PinCode": "5678"
     },
     "TransactionHistory": [
       {
         "TransactionDate": "2024-01-03T14:15:30+04:00",
         "TransactionType": "BalanceInquiry",
-        "AmountGEL": 0.0,
-        "AmountUSD": 0.0,
-        "AmountEUR": 0.0
+        "AmountGel": 0.0,
+        "AmountUsd": 0.0,
+        "AmountEur": 0.0
       }
     ]
   }

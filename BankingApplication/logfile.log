@@ -10,3 +10,9 @@
 2024-02-14 21:25:08.3009 INFO User Authentication Failed | Invalid Card Information
 2024-02-14 21:25:39.3386 INFO User Authentication Failed | Incorrect PIN
 2024-02-14 21:30:09.0580 INFO User Authentication Failed | Invalid Card Information
+2024-02-16 15:51:51.8959 INFO Money Withdrawal Failed | Invalid Amount
+2024-02-16 17:55:50.0708 INFO User Authentication Failed | Invalid Card Information
+2024-02-16 17:56:11.2027 INFO User Authentication Failed | Incorrect PIN
+2024-02-16 19:29:20.9969 INFO Conversion Failed | Invalid Currency
+2024-02-16 19:30:32.7729 INFO PIN Change Failed | Invalid PIN
+2024-02-16 19:49:59.0790 INFO Money Withdrawal Failed | Invalid Amount

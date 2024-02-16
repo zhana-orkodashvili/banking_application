@@ -7,15 +7,39 @@ public class User
     public Card CardDetails { get; set; }
     public List<Transaction> TransactionHistory { get; set; }
 
+    public User(string firstName, string lastName, Card cardDetails, List<Transaction> transactionHistory)
+    {
+        FirstName = firstName;
+        LastName = lastName;
+        CardDetails = cardDetails;
+        TransactionHistory = transactionHistory;
+    }
     
     public void CheckBalance()
     {
-        Console.WriteLine("Account Balance:");
+        if (TransactionHistory.Count == 0)
+        {
+            Console.WriteLine("No Transactions Were Made.");
+            return;
+        }
+
         var latestTransaction = TransactionHistory[0];
+        Console.WriteLine("Account Balance:");
+        Console.WriteLine($"GEL: {latestTransaction.AmountGel}");
+        Console.WriteLine($"EUR: {latestTransaction.AmountEur}");
+        Console.WriteLine($"USD: {latestTransaction.AmountUsd}");
+        Console.WriteLine();
         
-        Console.WriteLine($"GEL: {latestTransaction.AmountGEL}");
-        Console.WriteLine($"EUR: {latestTransaction.AmountEUR}");
-        Console.WriteLine($"USD: {latestTransaction.AmountUSD}");
+        var checkBalanceTransaction = new Transaction
+        {
+            TransactionDate = DateTime.Now,
+            TransactionType = "Check Balance",
+            AmountGel = latestTransaction.AmountGel,
+            AmountUsd = latestTransaction.AmountUsd,
+            AmountEur = latestTransaction.AmountEur
+            
+        };
+        TransactionHistory.Insert(0,checkBalanceTransaction);
     }
     
     public void MakeWithdrawal(decimal amount)
@@ -24,14 +48,14 @@ public class User
         {
             TransactionDate = DateTime.Now,
             TransactionType = "Withdrawal",
-            AmountGEL = TransactionHistory[0].AmountGEL-amount,
-            AmountUSD = TransactionHistory[0].AmountUSD,
-            AmountEUR = TransactionHistory[0].AmountEUR
+            AmountGel = TransactionHistory[0].AmountGel-amount,
+            AmountUsd = TransactionHistory[0].AmountUsd,
+            AmountEur = TransactionHistory[0].AmountEur
             
         };
 
         TransactionHistory.Insert(0,withdrawalTransaction);
-        Console.WriteLine($"Withdrawn {amount} GEL successfully. \nCurrent Balance: {TransactionHistory[0].AmountGEL} GEL");
+        Console.WriteLine($"Withdrawn {amount}GEL successfully. \nCurrent Balance: {TransactionHistory[0].AmountGel}GEL");
     }
     
     public void GetLastTransactions()
@@ -53,9 +77,9 @@ public class User
             var transaction = TransactionHistory[i];
             Console.WriteLine($"Transaction Date: {transaction.TransactionDate}");
             Console.WriteLine($"Transaction Type: {transaction.TransactionType}");
-            Console.WriteLine($"Amount in GEL: {transaction.AmountGEL}");
-            Console.WriteLine($"Amount in EUR: {transaction.AmountEUR}");
-            Console.WriteLine($"Amount in USD: {transaction.AmountUSD}");
+            Console.WriteLine($"Amount in GEL: {transaction.AmountGel}");
+            Console.WriteLine($"Amount in EUR: {transaction.AmountEur}");
+            Console.WriteLine($"Amount in USD: {transaction.AmountUsd}");
             Console.WriteLine();
         }
     }
@@ -66,19 +90,30 @@ public class User
         {
             TransactionDate = DateTime.Now,
             TransactionType = "Fill Amount",
-            AmountGEL = TransactionHistory[0].AmountGEL+amount,
-            AmountUSD = TransactionHistory[0].AmountUSD,
-            AmountEUR = TransactionHistory[0].AmountEUR
+            AmountGel = TransactionHistory[0].AmountGel+amount,
+            AmountUsd = TransactionHistory[0].AmountUsd,
+            AmountEur = TransactionHistory[0].AmountEur
             
         };
 
         TransactionHistory.Insert(0,depositTransaction);
-        Console.WriteLine($"Added {amount} GEL successfully. \nCurrent Balance: {TransactionHistory[0].AmountGEL} GEL");
+        Console.WriteLine($"Added {amount}GEL successfully. \nCurrent Balance: {TransactionHistory[0].AmountGel}GEL");
     }
     
     public void ChangePin(string newPin)
     {
         CardDetails.PinCode = newPin;
+        var changePinTransaction = new Transaction
+        {
+            TransactionDate = DateTime.Now,
+            TransactionType = "Change PIN",
+            AmountGel = TransactionHistory[0].AmountGel,
+            AmountUsd = TransactionHistory[0].AmountUsd,
+            AmountEur = TransactionHistory[0].AmountEur
+            
+        };
+
+        TransactionHistory.Insert(0,changePinTransaction);
         Console.WriteLine("PIN changed successfully.");
     }
     
@@ -88,9 +123,9 @@ public class User
         const decimal gelToUsdRate = 0.377m; 
         const decimal gelToEurRate = 0.35m; 
 
-        var balanceUsd = TransactionHistory[0].AmountUSD;
-        var balanceGel = TransactionHistory[0].AmountGEL;
-        var balanceEur = TransactionHistory[0].AmountEUR;
+        var balanceUsd = TransactionHistory[0].AmountUsd;
+        var balanceGel = TransactionHistory[0].AmountGel;
+        var balanceEur = TransactionHistory[0].AmountEur;
         
 
         decimal convertedAmount = 0;
@@ -104,15 +139,15 @@ public class User
                 conversionTransaction = new Transaction
                 {
                     TransactionDate = DateTime.Now,
-                    TransactionType = "Fill Amount",
-                    AmountGEL = balanceGel-amount,
-                    AmountUSD = balanceUsd + convertedAmount,
-                    AmountEUR = balanceEur
+                    TransactionType = "Currency Conversion to USD",
+                    AmountGel = balanceGel-amount,
+                    AmountUsd = balanceUsd + convertedAmount,
+                    AmountEur = balanceEur
             
                 };
 
                 TransactionHistory.Insert(0,conversionTransaction);
-                Console.WriteLine($"Added {convertedAmount} USD successfully.");
+                Console.WriteLine($"Added {convertedAmount}USD successfully.");
                 break;
             
             case "eur":
@@ -120,15 +155,15 @@ public class User
                 conversionTransaction = new Transaction
                 {
                     TransactionDate = DateTime.Now,
-                    TransactionType = "Fill Amount",
-                    AmountGEL = balanceGel-amount,
-                    AmountUSD = balanceUsd,
-                    AmountEUR = balanceEur+convertedAmount
+                    TransactionType = "Currency Conversion to EUR",
+                    AmountGel = balanceGel-amount,
+                    AmountUsd = balanceUsd,
+                    AmountEur = balanceEur+convertedAmount
             
                 };
 
                 TransactionHistory.Insert(0,conversionTransaction);
-                Console.WriteLine($"Added {convertedAmount} EUR successfully.");
+                Console.WriteLine($"Added {convertedAmount}EUR successfully.");
                 break;
             default:
                 Console.WriteLine("Invalid currency for conversion. Can only convert to USD or EUR.");

@@ -18,3 +18,4 @@ C:\Users\User\RiderProjects\commschoolFinal\BankingApplication\obj\Debug\net8.0\
 C:\Users\User\RiderProjects\commschoolFinal\BankingApplication\obj\Debug\net8.0\ref\BankingApplication.dll
 C:\Users\User\RiderProjects\commschoolFinal\BankingApplication\bin\Debug\net8.0\NLog.dll
 C:\Users\User\RiderProjects\commschoolFinal\BankingApplication\bin\Debug\net8.0\NLog.config
+C:\Users\User\RiderProjects\commschoolFinal\BankingApplication\obj\Debug\net8.0\BankingApplication.sourcelink.json
